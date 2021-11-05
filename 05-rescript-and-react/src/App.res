@@ -1,13 +1,16 @@
-module Message = {
+open Render
+
+let names = ["Alan Kay", "Alonzo Church"]
+
+module Text = {
   @react.component
-  let make = (~message) => {
-    <h1> {message->React.string} </h1>
-  }
+  let make = (~children) => <h1>{children->s}</h1>
 }
 
 @react.component
 let make = () => {
   <div>
-    <Message message="Hello from ReScript" />
+    <Text>{"Hello ReScript"}</Text>
+    {names->map((item, key) => <li key={key}>{item->s}</li>)}
   </div>
 }
